@@ -7,7 +7,7 @@ on:
 jobs:
   test:
     name: Test on node ${{ matrix.node-version }} and ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ github.event.pull_request.head.repo.fork && 'ubuntu-24.04' || fromJSON('["self-hosted","ci","github-actions"]') }}
     strategy:
       matrix:
         node-version: [16.x, 18.x]
